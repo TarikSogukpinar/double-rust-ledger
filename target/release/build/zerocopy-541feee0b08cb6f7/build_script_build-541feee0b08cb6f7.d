@@ -1,0 +1,5 @@
+/Users/tarikmono/projects/double-rust-legder/target/release/build/zerocopy-541feee0b08cb6f7/build_script_build-541feee0b08cb6f7.d: /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.26/build.rs
+
+/Users/tarikmono/projects/double-rust-legder/target/release/build/zerocopy-541feee0b08cb6f7/build_script_build-541feee0b08cb6f7: /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.26/build.rs
+
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/zerocopy-0.8.26/build.rs:

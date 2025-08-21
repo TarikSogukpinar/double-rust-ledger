@@ -1,0 +1,10 @@
+/Users/tarikmono/projects/double-rust-legder/target/debug/deps/toml_writer-05cd4abcb33c14e3.d: /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/lib.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/integer.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/key.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/string.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/value.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/write.rs
+
+/Users/tarikmono/projects/double-rust-legder/target/debug/deps/libtoml_writer-05cd4abcb33c14e3.rmeta: /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/lib.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/integer.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/key.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/string.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/value.rs /Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/write.rs
+
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/lib.rs:
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/integer.rs:
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/key.rs:
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/string.rs:
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/value.rs:
+/Users/tarikmono/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/toml_writer-1.0.2/src/write.rs:
