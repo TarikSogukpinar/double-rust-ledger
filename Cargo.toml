@@ -12,7 +12,7 @@ actix-cors = "0.7"
 diesel = { version = "2.1", features = ["sqlite", "chrono", "uuid", "r2d2"] }
 diesel_migrations = "2.1"
 r2d2 = "0.8"
-tokio = { version = "1.0", features = ["macros", "rt-multi-thread"] }
+tokio = { version = "1.0", features = ["macros", "rt-multi-thread", "signal", "time"] }
 
 # Serialization
 serde = { version = "1.0", features = ["derive"] }
@@ -40,3 +40,6 @@ log = "0.4"
 
 # Validation
 validator = { version = "0.16", features = ["derive"] }
+
+# Async utilities
+futures-util = "0.3"
