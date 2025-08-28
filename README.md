@@ -1,18 +1,18 @@
-# 📊 Double Entry Ledger API
+# Double Entry Ledger API
 
 Modern, production-ready double-entry bookkeeping system built with Rust and Actix Web.
 
-## 🚀 Features
+## Features
 
-- ✅ **Double-Entry Accounting**: Enforced debit/credit balance validation
-- 🏦 **Chart of Accounts**: Hierarchical account management (Asset, Liability, Equity, Revenue, Expense)
-- 💳 **Transaction Management**: Complete journal entry handling with multiple entries
-- ⚖️ **Balance Calculations**: Real-time account balances with proper accounting rules
-- 🔒 **Production Ready**: Graceful shutdown, panic recovery, request timeouts
-- ⚡ **High Performance**: SQLite with connection pooling and optimized queries
-- 🧪 **Well Tested**: Comprehensive unit and integration test suite
+- **Double-Entry Accounting**: Enforced debit/credit balance validation
+- **Chart of Accounts**: Hierarchical account management (Asset, Liability, Equity, Revenue, Expense)
+- **Transaction Management**: Complete journal entry handling with multiple entries
+- **Balance Calculations**: Real-time account balances with proper accounting rules
+- **Production Ready**: Graceful shutdown, panic recovery, request timeouts
+- **High Performance**: SQLite with connection pooling and optimized queries
+- **Well Tested**: Comprehensive unit and integration test suite
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 - **Backend**: Rust + Actix Web 4
 - **Database**: SQLite with Diesel ORM
@@ -20,7 +20,7 @@ Modern, production-ready double-entry bookkeeping system built with Rust and Act
 - **Logging**: env_logger
 - **Testing**: Built-in Rust testing + Actix Web test utilities
 
-## 📦 Quick Start
+## Quick Start
 
 ### Prerequisites
 - Rust 1.70+ installed
@@ -53,7 +53,7 @@ cargo test -- --nocapture
 cargo test test_transaction_double_entry_flow
 ```
 
-## 🔌 API Documentation
+## API Documentation
 
 **Base URL**: `http://localhost:8080`
 
@@ -62,7 +62,7 @@ cargo test test_transaction_double_entry_flow
 GET /health
 ```
 
-### 🏦 Accounts API
+### Accounts API
 
 #### Create Account
 ```http
@@ -103,7 +103,7 @@ Content-Type: application/json
 DELETE /api/v1/accounts/{account_id}
 ```
 
-### 💳 Transactions API
+### Transactions API
 
 #### Create Transaction
 ```http
@@ -146,7 +146,7 @@ GET /api/v1/transactions/{transaction_id}
 DELETE /api/v1/transactions/{transaction_id}
 ```
 
-### ⚖️ Balance API
+### Balance API
 
 #### Get All Balances
 ```http
@@ -163,7 +163,7 @@ GET /api/v1/balance?account_type=asset
 GET /api/v1/balance/{account_id}
 ```
 
-## 📊 Account Types & Balance Rules
+## Account Types & Balance Rules
 
 | Account Type | Normal Balance | Increases With | Decreases With |
 |-------------|---------------|----------------|----------------|
@@ -173,7 +173,7 @@ GET /api/v1/balance/{account_id}
 | **Revenue** | Credit | Credit | Debit |
 | **Expense** | Debit | Debit | Credit |
 
-## 🧪 Example Transaction Flow
+## Example Transaction Flow
 
 ### 1. Create Chart of Accounts
 ```bash
@@ -221,7 +221,7 @@ curl http://localhost:8080/api/v1/balance
 curl http://localhost:8080/api/v1/balance?account_type=asset
 ```
 
-## 🔧 Configuration
+## Configuration
 
 Environment variables:
 
@@ -229,7 +229,7 @@ Environment variables:
 - `BIND_ADDRESS`: Server bind address (default: `127.0.0.1:8080`)
 - `RUST_LOG`: Log level (default: `info`)
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 src/
@@ -252,7 +252,7 @@ migrations/              # Database migrations
 tests/                   # Integration tests
 ```
 
-## 🚦 Error Handling
+## Error Handling
 
 All API responses follow a consistent format:
 
@@ -276,7 +276,7 @@ All API responses follow a consistent format:
 }
 ```
 
-## 📈 Performance Features
+## Performance Features
 
 - **Connection Pooling**: R2D2 with 15 max connections
 - **Request Timeouts**: 30-second timeout protection
@@ -284,7 +284,7 @@ All API responses follow a consistent format:
 - **Graceful Shutdown**: Clean shutdown on SIGTERM/SIGINT
 - **Database Indexing**: Optimized indexes for frequent queries
 
-## 🧪 Testing
+## Testing
 
 The project includes comprehensive tests:
 
@@ -299,11 +299,11 @@ Key test scenarios:
 - Error handling and validation
 - Database constraint enforcement
 
-## 📝 License
+## License
 
 MIT License - see LICENSE file for details
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create a feature branch
@@ -312,5 +312,3 @@ MIT License - see LICENSE file for details
 5. Submit a pull request
 
 ---
-
-Built with ❤️ in Rust for reliable financial data management.
