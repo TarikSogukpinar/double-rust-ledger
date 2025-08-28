@@ -276,39 +276,4 @@ All API responses follow a consistent format:
 }
 ```
 
-## Performance Features
-
-- **Connection Pooling**: R2D2 with 15 max connections
-- **Request Timeouts**: 30-second timeout protection
-- **Panic Recovery**: Graceful error handling for panics
-- **Graceful Shutdown**: Clean shutdown on SIGTERM/SIGINT
-- **Database Indexing**: Optimized indexes for frequent queries
-
-## Testing
-
-The project includes comprehensive tests:
-
-- **Unit Tests**: Model validation, type conversions, business logic
-- **Integration Tests**: Full API workflow testing with in-memory database
-- **Error Handling Tests**: Validation and error response testing
-
-Key test scenarios:
-- Account CRUD operations
-- Double-entry transaction validation
-- Balance calculation accuracy
-- Error handling and validation
-- Database constraint enforcement
-
-## License
-
-MIT License - see LICENSE file for details
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Add tests for new functionality
-4. Ensure all tests pass: `cargo test`
-5. Submit a pull request
-
 ---
