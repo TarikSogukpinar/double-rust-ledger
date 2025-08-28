@@ -17,7 +17,7 @@ pub struct Account {
     pub updated_at: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum AccountType {
     #[serde(rename = "asset")]
     Asset,
@@ -232,5 +232,138 @@ impl<T> ApiResponse<T> {
             message: Some("Validation failed".to_string()),
             errors: Some(errors),
         }
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    use rust_decimal::Decimal;
+
+    #[test]
+    fn test_account_type_conversion() {
+        // Test From<String> for AccountType
+        assert_eq!(AccountType::from("asset".to_string()), AccountType::Asset);
+        assert_eq!(AccountType::from("liability".to_string()), AccountType::Liability);
+        assert_eq!(AccountType::from("equity".to_string()), AccountType::Equity);
+        assert_eq!(AccountType::from("revenue".to_string()), AccountType::Revenue);
+        assert_eq!(AccountType::from("expense".to_string()), AccountType::Expense);
+        
+        // Test invalid type defaults to Asset
+        assert_eq!(AccountType::from("invalid".to_string()), AccountType::Asset);
+        
+        // Test From<AccountType> for String
+        assert_eq!(String::from(AccountType::Asset), "asset");
+        assert_eq!(String::from(AccountType::Liability), "liability");
+        assert_eq!(String::from(AccountType::Equity), "equity");
+        assert_eq!(String::from(AccountType::Revenue), "revenue");
+        assert_eq!(String::from(AccountType::Expense), "expense");
+    }
+
+    #[test]
+    fn test_create_account_request_validation() {
+        let valid_request = CreateAccountRequest {
+            code: "1000".to_string(),
+            name: "Cash Account".to_string(),
+            account_type: AccountType::Asset,
+            parent_id: None,
+        };
+        
+        // Should pass validation
+        assert!(valid_request.validate().is_ok());
+
+        let invalid_request = CreateAccountRequest {
+            code: "".to_string(), // Empty code should fail
+            name: "Cash Account".to_string(),
+            account_type: AccountType::Asset,
+            parent_id: None,
+        };
+        
+        // Should fail validation
+        assert!(invalid_request.validate().is_err());
+    }
+
+    #[test]
+    fn test_create_transaction_request_validation() {
+        let valid_entries = vec![
+            CreateEntryRequest {
+                account_id: "acc1".to_string(),
+                debit_amount: Some(Decimal::new(10000, 2)), // 100.00
+                credit_amount: None,
+                description: Some("Test debit".to_string()),
+            },
+            CreateEntryRequest {
+                account_id: "acc2".to_string(),
+                debit_amount: None,
+                credit_amount: Some(Decimal::new(10000, 2)), // 100.00
+                description: Some("Test credit".to_string()),
+            },
+        ];
+
+        let valid_request = CreateTransactionRequest {
+            reference: "TXN-001".to_string(),
+            description: "Test transaction".to_string(),
+            transaction_date: None,
+            entries: valid_entries,
+        };
+        
+        // Should pass validation
+        assert!(valid_request.validate().is_ok());
+
+        let invalid_request = CreateTransactionRequest {
+            reference: "".to_string(), // Empty reference should fail
+            description: "Test transaction".to_string(),
+            transaction_date: None,
+            entries: vec![],
+        };
+        
+        // Should fail validation
+        assert!(invalid_request.validate().is_err());
+    }
+
+    #[test]
+    fn test_api_response_builders() {
+        let success_response = ApiResponse::success("test data");
+        assert!(success_response.success);
+        assert_eq!(success_response.data, Some("test data"));
+        assert!(success_response.message.is_none());
+        assert!(success_response.errors.is_none());
+
+        let error_response: ApiResponse<()> = ApiResponse::error("error message".to_string());
+        assert!(!error_response.success);
+        assert!(error_response.data.is_none());
+        assert_eq!(error_response.message, Some("error message".to_string()));
+        assert!(error_response.errors.is_none());
+
+        let validation_response: ApiResponse<()> = ApiResponse::validation_errors(vec![
+            "field1 is required".to_string(),
+            "field2 is invalid".to_string(),
+        ]);
+        assert!(!validation_response.success);
+        assert!(validation_response.data.is_none());
+        assert_eq!(validation_response.message, Some("Validation failed".to_string()));
+        assert_eq!(validation_response.errors, Some(vec![
+            "field1 is required".to_string(),
+            "field2 is invalid".to_string(),
+        ]));
+    }
+
+    #[test]
+    fn test_account_balance_calculation() {
+        use rust_decimal::Decimal;
+        
+        let balance = AccountBalance {
+            account_id: "test-id".to_string(),
+            account_code: "1000".to_string(),
+            account_name: "Test Account".to_string(),
+            account_type: "asset".to_string(),
+            debit_total: Decimal::new(15000, 2), // 150.00
+            credit_total: Decimal::new(5000, 2),  // 50.00
+            balance: Decimal::new(10000, 2),      // 100.00
+        };
+
+        // For asset accounts: balance = debits - credits
+        let expected_balance = balance.debit_total - balance.credit_total;
+        assert_eq!(balance.balance, expected_balance);
     }
 }

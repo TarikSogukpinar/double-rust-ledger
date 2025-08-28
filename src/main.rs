@@ -1,10 +1,8 @@
 use actix_web::{middleware::Logger, web, App, HttpServer};
 use dotenvy::dotenv;
-use log::{error, info, warn};
+use log::{error, info};
 use std::env;
 use tokio::signal;
-use std::time::Duration;
-
 mod config;
 mod database;
 mod errors;
@@ -53,7 +51,7 @@ async fn main() -> std::io::Result<()> {
 
     // Setup graceful shutdown
     let server_handle = server.handle();
-    
+
     tokio::select! {
         result = server => {
             if let Err(e) = result {
@@ -62,10 +60,10 @@ async fn main() -> std::io::Result<()> {
         }
         _ = shutdown_signal() => {
             info!("Shutdown signal received, starting graceful shutdown...");
-            
+
             // Stop accepting new connections and wait for existing ones to complete
             server_handle.stop(true).await;
-            
+
             info!("Server shutdown completed");
         }
     }
