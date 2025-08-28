@@ -24,7 +24,7 @@ async fn main() -> std::io::Result<()> {
     let db_pool = database::create_pool(&database_url).expect("Failed to create database pool");
 
     // Run migrations
-    database::run_migrations(&db_pool).expect("Failed to run migrations");
+    database::run_migrations(&db_pool).expect("Failed to run migrations");       
 
     let bind_address = env::var("BIND_ADDRESS").unwrap_or_else(|_| "127.0.0.1:8080".to_string());
     info!("Server running at http://{}", bind_address);
